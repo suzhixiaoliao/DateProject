@@ -1,0 +1,35 @@
+
+<view class="title  ">
+  <view class=''> 
+    <view class=' yy1'>
+      <view class=' yy2'>{{!createData?'入住日期':createData}}</view>
+      <view class=' yy3'></view>
+      <view class=' yy4'>{{!toData?'退房日期':toData}}</view>
+    </view>
+    <view class=' border-bottom-data dayline'>
+      <view>日</view>
+      <view>一</view>
+      <view>二</view>
+      <view>三</view>
+      <view>四</view>
+      <view>五</view>
+      <view>六</view>
+    </view>
+  </view>
+</view>
+<view class="title_block"></view>
+<block wx:for="{{months}}" wx:key="{{item}}">
+  <view class="month_title">{{item.year==years?'':item.year+'年'}}{{item.month}} 月</view>
+  <view class="days_area dayline">
+ <view wx:for="{{item.days}}" class='day {{item.enable?"":"disable"}} {{(item.time == day_go && item.time == day_back)?"circle":""}} {{(item.time == day_go && item.time != day_back&&day_back!=null)?"left":""}}{{(item.time == day_go &&day_back==null)?"circle":""}} {{(item.time != day_go && item.time == day_back && day_go != null)?"right":""}} {{(item.time == day_back && day_go == null)?"circle":""}} {{(item.time > day_go && item.time < day_back && day_go != null && day_back != null)?"middle":""}}' data-day='{{item}}' bindtap='select'>
+      <view class='{{item.time == today?"today":"texts"}}'>{{item.text}}</view>
+      <view class='pricePicker'>{{item.price!=''?('¥' + item.price):''}}</view>
+    </view>
+  </view>
+</block>
+<view class='lineALl-big'></view>
+<view class='myorder-buttoms-view app-r'>
+  <view  class='data-nights'>选择{{nights}}晚</view>
+  <button class='data-nobtn noborder' catchtap='nodataTap'>清除</button>
+  <button class='data-btn noborder' catchtap='saveTap'>保存</button>
+</view>
